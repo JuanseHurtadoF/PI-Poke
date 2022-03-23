@@ -30,15 +30,15 @@ router.get('/', async function (req, res, next) {
 
                 types = urlRequest.data.types.map(poke => {return poke.type.name})
                 
-                
                 var obj = {
+                        id: urlRequest.data.id,
                         name: pokemonApi[i].name,
-                        HP: urlRequest.data.stats[0].base_stat,
-                        attack: urlRequest.data.stats[1].base_stat,
-                        defense: urlRequest.data.stats[2].base_stat,
-                        speed: urlRequest.data.stats[5].base_stat,
-                        weight: urlRequest.data.weight,
-                        height: urlRequest.data.height,
+                        // HP: urlRequest.data.stats[0].base_stat,
+                        // attack: urlRequest.data.stats[1].base_stat,
+                        // defense: urlRequest.data.stats[2].base_stat,
+                        // speed: urlRequest.data.stats[5].base_stat,
+                        // weight: urlRequest.data.weight,
+                        // height: urlRequest.data.height,
                         types: types,
                         img: urlRequest.data.sprites.front_default
                     }
