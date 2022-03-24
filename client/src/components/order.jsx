@@ -1,12 +1,27 @@
+import { useSelector, useDispatch } from "react-redux"
+import { orderPokemon } from "../store/actions"
+
 export default function Order() {
-    function handleSelectChange(event) {
-        console.log(event)
+    
+    let toOrder = useSelector(state => state.pokemon)
+
+    let dispatch = useDispatch()
+
+    function handleChange(event) {
+        let orderBy = event.target.value
+        console.log(toOrder)
+        console.log(orderBy)
+        dispatch(orderPokemon(toOrder, orderBy))
     }
     
     return (
-        <select onChange={handleSelectChange}>
+        <select onChange={handleChange}>
+            <option value='default'> -- </option>
             <option value='A to Z'>A to Z</option>
-            <option value='Strength'>Strength</option>
+            <option value='Z to A'>Z to A</option>
+            <option value='By attack'>By attack</option>
+            <option value='Created by me'>Created by me</option>
+            <option value='From PokeApi'>From PokeApi</option>
         </select>
     )
 }

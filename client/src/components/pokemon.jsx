@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch} from "react-redux"
 import axios from "axios"
 import { pokemonDetails } from "../store/actions"
 
@@ -14,20 +13,21 @@ export default function Pokemon(props) {
 
     async function handleClick(event) {
         event.preventDefault()
-        const info = await axios.get('http://localhost:3001/api/pokemon/name/' + props.name.toLowerCase())
+        console.log('props')
+        console.log(props)
+        console.log('End of props')
+
+        await axios.get('http://localhost:3001/api/pokemon/name/' + props.name.toLowerCase())
             .then(response => {
                 pokemonInfo = response.data
-                console.log(pokemonInfo[0])
                 dispatch(pokemonDetails(pokemonInfo[0]))
             })
-        
-            
     }
 
     return (
         <div className="pokemon-card" draggable='true' onClick={handleClick}>
             <div className="image-background">
-                <img src={props.image} className="pokemon-image"></img>
+                <img src={props.image} className="pokemon-image" alt="pokemon front-default"></img>
             </div>
             <div className="pokemon-name-type">
                 <h2 className="pokemon-name">{props.name}</h2>

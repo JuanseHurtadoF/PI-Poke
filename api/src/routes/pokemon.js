@@ -13,8 +13,21 @@ router.get('/', async function (req, res, next) {
     let pokemonApi = response.data.results
 
     // Get pokemon that have been stored in the DB
+    // let pokemonDb = Pokemon.findAll({
+    //     include: Type,
+    // })
+
     let pokemonDb = Pokemon.findAll({
-        include: Type
+        include: [{
+            model: Type,
+            as: 'types',
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+        }],
+        through: ['name'],
+        attributes: ['id', 'name', 'hp', 'attack', 'defense', 'speed', 'weight', 'height', 'img', 'created']
     })
 
     // Save all data needed into an array of objects
@@ -29,12 +42,11 @@ router.get('/', async function (req, res, next) {
                 const urlRequest = await axios.get(pokemonApi[i].url)
 
                 types = urlRequest.data.types.map(poke => {return poke.type.name})
-                
                 var obj = {
                         id: urlRequest.data.id,
-                        name: pokemonApi[i].name,
+                        name: urlRequest.data.name,
                         // HP: urlRequest.data.stats[0].base_stat,
-                        // attack: urlRequest.data.stats[1].base_stat,
+                        attack: urlRequest.data.stats[1].base_stat,
                         // defense: urlRequest.data.stats[2].base_stat,
                         // speed: urlRequest.data.stats[5].base_stat,
                         // weight: urlRequest.data.weight,
@@ -48,11 +60,12 @@ router.get('/', async function (req, res, next) {
 
             const fromApiAndDb = [...allPokemonApi, ...pokemonDb]
 
-            res.send(fromApiAndDb)
+            return res.send(fromApiAndDb)
         })
 })
 
 router.get('/name/:name', async (req, res, next) => {
+
     const name = req.params.name
 
     let foundInDb = await Pokemon.findAll({
@@ -64,8 +77,8 @@ router.get('/name/:name', async (req, res, next) => {
 
     try {
         let apiResponse = await axios.get("http://pokeapi.co/api/v2/pokemon/" + name)
-        types = apiResponse.data.types.map(poke => {return poke.type.name})
-    
+  
+            types = apiResponse.data.types.map(poke => {return poke.type.name})
             var obj = {
                 name: name,
                 hp: apiResponse.data.stats[0].base_stat,
@@ -78,7 +91,7 @@ router.get('/name/:name', async (req, res, next) => {
                 img: apiResponse.data.sprites.front_default
             }
     } catch(error) {
-        
+        console.log(error)
     }
 
     
@@ -92,6 +105,56 @@ router.get('/name/:name', async (req, res, next) => {
     if (allFound.length < 1) return res.send('No pokemon found')
 
     res.send(filteredAllFound)
+    // const name = req.params.name
+
+    // let allFound 
+
+    // let foundInDb = await Pokemon.findAll({
+    //     include: Type,
+    //     where: {
+    //         name: name
+    //     }
+    // })
+
+    // if (foundInDb[0]?.dataValues?.name ? foundInDb[0].dataValues.name : false) {
+    //     console.log("Found it in database")
+    //     allFound = [...foundInDb]
+    //     return res.send(allFound)
+    // } else {
+    //     try {
+    //         let apiResponse = await axios.get("http://pokeapi.co/api/v2/pokemon/" + name)
+    //         types = apiResponse.data.types.map(poke => {return poke.type.name})
+        
+    //             var obj = {
+    //                 name: name,
+    //                 hp: apiResponse.data.stats[0].base_stat,
+    //                 attack: apiResponse.data.stats[1].base_stat,
+    //                 defense: apiResponse.data.stats[2].base_stat,
+    //                 speed: apiResponse.data.stats[5].base_stat,
+    //                 weight: apiResponse.data.weight,
+    //                 height: apiResponse.data.height,
+    //                 types: types,
+    //                 img: apiResponse.data.sprites.front_default
+    //             }
+    
+    //             let foundInApi = [obj]
+    //             allFound = [...foundInApi]
+    //             return res.send(allFound)
+    //     } catch(error) {
+    //         next(error)
+    //     }
+    //     if (foundInDb[0]?.dataValues?.name ? foundInDb[0].dataValues.name : false) {
+    //         allFound = []
+    //     }
+    // } 
+
+    // // allFound = [...foundInDb, ...foundInApi]
+
+    // // let filteredAllFound = allFound.filter(item => item)
+
+    // // if (allFound.length < 1) return res.send('No pokemon found')
+
+    // return res.send(allFound)
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -101,7 +164,7 @@ router.get('/:id', async (req, res, next) => {
     
         if(typeof id === 'string' && id.length > 8) {
             foundPokemon = await Pokemon.findByPk(id)
-            res.send(foundPokemon)
+            return res.send(foundPokemon)
         } else {
 
             let response = await axios.get('http://pokeapi.co/api/v2/pokemon/' + id)
@@ -118,7 +181,7 @@ router.get('/:id', async (req, res, next) => {
             }
 
             foundPokemon = obj
-            res.send(foundPokemon)
+            return res.send(foundPokemon)
         }
         
     } catch(error) {
@@ -137,9 +200,9 @@ router.post('/', async function (req, res, next) {
             defense, 
             speed,
             height,
-            weight
+            weight,
         })
-        res.send(newPokemon)
+        return res.send(newPokemon)
     } catch(error) {
         next(error)
     }
@@ -147,84 +210,20 @@ router.post('/', async function (req, res, next) {
 
 })
 
+
 router.put('/', function (req, res, next) {
-    res.send("Soy put en / pokemon")
+    return res.send("Soy put en / pokemon")
 })
 
 router.delete('/', function (req, res, next) {
-    res.send("Soy delete en / pokemon")
+    return res.send("Soy delete en / pokemon")
 })
+
+
+
+
 
 module.exports = router;
 
 
 
-// just in case 
-
-// const axios = require('axios');
-// const { Router, response } = require('express');
-// const { Pokemon } = require('../db')
-// const { Type } = require('../db')
-// const router = Router();
-
-// router.get('/', async function (req, res, next) {
-//     let pokemonApi = await axios.get("http://pokeapi.co/api/v2/pokemon")
-//     let pokemonDb = Pokemon.findAll({
-//         include: Type
-//     })
-    
-//     Promise.all([pokemonApi, pokemonDb])
-//         .then(response => {
-//             const [pokemonApi, pokemonDb] = response
-//             console.log(pokemonApi.data.results)
-//             console.log(pokemonDb)
-//             res.send('All data printed to console')
-//         })
-// })
-
-// // router.get('/', async function (req, res, next) {
-// //     return await Pokemon.findAll(
-// //         {include: Type}
-// //     )
-// //         .then(poke => {
-// //             res.send(poke)
-// //         }).catch(error => {
-// //             next(error)
-// //         })
-
-// //     // const allPokemon = await downloadFromAPI()
-// //     // res.status(200).send(allPokemon)
-// // })
-
-
-
-
-// router.post('/', async function (req, res, next) {
-//     try {
-//         const {name, hp, attack, defense, speed, height, weight } = req.body
-//         const newPokemon = await Pokemon.create({
-//             name, 
-//             hp, 
-//             attack,
-//             defense, 
-//             speed,
-//             height,
-//             weight
-//         })
-//         res.send(newPokemon)
-//     } catch(error) {
-//         next(error)
-//     }
-    
-
-// })
-
-// router.put('/', function (req, res, next) {
-//     res.send("Soy put en / pokemon")
-// })
-
-// router.delete('/', function (req, res, next) {
-//     res.send("Soy delete en / pokemon")
-// })
-
-// module.exports = router;

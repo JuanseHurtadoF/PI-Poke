@@ -33,5 +33,13 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER
     },
+    created: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
+    img: {
+      type: DataTypes.STRING,
+      defaultValue: 'https://cdn-icons-png.flaticon.com/512/188/188918.png'
+    }
   });
 };

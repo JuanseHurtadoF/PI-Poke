@@ -1,5 +1,6 @@
 import { FETCH_POKEMON, SEARCH_POKEMON } from "../actions";
 import { GET_POKEMON_INFO } from "../actions";
+import { ORDER_POKEMON } from "../actions";
 
 const initialState = {
     pokemon: [],
@@ -22,7 +23,8 @@ export default function reducer(state = initialState, action) {
         case FETCH_POKEMON:
             return {
                 ...state,
-                pokemon: action.payload.data
+                pokemon: action.payload.data,
+                filteredPokemon: action.payload.data
             }
         case GET_POKEMON_INFO:
             return {
@@ -32,7 +34,12 @@ export default function reducer(state = initialState, action) {
         case SEARCH_POKEMON:
             return {
                 ...state,
-                pokemon: action.payload.data
+                filteredPokemon: action.payload.data
+            }
+        case ORDER_POKEMON:
+            return {
+                ...state,
+                filteredPokemon: action.payload,
             }
         default: 
             return state

@@ -10,7 +10,7 @@ const {Pokemon} = require('../db')
 router.get('/', async function (req, res, next) {
     try {
         const types = await Type.findAll()
-        res.send(types)
+        return res.send(types)
     } catch(error) {
         next(error)
     }
@@ -21,7 +21,7 @@ router.post('/', async function (req, res, next) {
         return Type.create({name})
             .then(newType => {
                 newType
-                res.status(201).send(newType)
+                return res.status(201).send(newType)
         }).catch(error => next(error))
 })
 
@@ -30,19 +30,19 @@ router.post('/:pokemonId/type/:typeId', async (req, res, next) => {
         const {pokemonId, typeId} = req.params
         const pokemon = await Pokemon.findByPk(pokemonId)
         await pokemon.addType(typeId)
-        res.send(200)
+        return res.send(200)
     } catch(error) {
         next(error)
     }
 
 })
 
-router.put('/', function (req, res, next) {
-    res.send("Soy put en / type")
-})
+// router.put('/', function (req, res, next) {
+//     res.send("Soy put en / type")
+// })
 
-router.delete('/', function (req, res, next) {
-    res.send("Soy delete en / type")
-})
+// router.delete('/', function (req, res, next) {
+//     res.send("Soy delete en / type")
+// })
 
 module.exports = router;

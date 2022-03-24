@@ -1,13 +1,12 @@
 import React from "react";
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { pokemonDetails } from "../store/actions";
+import { useSelector } from "react-redux"
 
 export default function PokemonInfo(props) {
 
     let pokemonInfo = useSelector(state => state.pokemonInfo)
     console.log(pokemonInfo)
-    var types = pokemonInfo.types.map(type => {return (<span>{(type.toUpperCase() + ' ')}</span>)})
+
+    var types = pokemonInfo.types.map(type => {return (<span key={type}>{(type.toUpperCase() + ' ')}</span>)})
 
     // let dispatch = useDispatch()
     // useEffect(() => {
@@ -16,7 +15,7 @@ export default function PokemonInfo(props) {
 
     
     return (
-        <div className="pokemon-information">
+        <div className="pokemon-information" key={pokemonInfo.id}>
             <div className="pokemon-information-background">
                 <img src={pokemonInfo.img} className="pokemon-image-info" alt="Pokemon front"/>
             </div>

@@ -6,17 +6,14 @@ import PokemonInfo from "./pokemonInfo"
 
 export default function AllPokemon() {
 
-    let pokemon = useSelector(state => state.pokemon)
+    let pokemon = useSelector(state => state.filteredPokemon)
 
+    
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchPokemon())
     }, [])
     console.log(pokemon)
-
-    // const types = pokemon.types.map(type => {
-    //     return <span>{type}</span>
-    // })
     
     return (
         <div className="body-container">
@@ -26,7 +23,7 @@ export default function AllPokemon() {
             <div className="pokemon-container">
                 {
                 pokemon.map(pokemon => {
-                    return <Pokemon name={pokemon.name[0].toUpperCase() + pokemon.name.slice(1)} image={pokemon.img} key={pokemon.id} types={pokemon.types} id ={pokemon}/>
+                    return <Pokemon id={pokemon.id} name={pokemon.name[0].toUpperCase() + pokemon.name.slice(1)} image={pokemon.img} key={pokemon.id} types={pokemon.types}/>
                 })}
             </div>
             <div className="pokemon-info">
