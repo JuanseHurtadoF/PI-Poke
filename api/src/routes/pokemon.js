@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', async function (req, res, next) {
 
     // Get pokemon from PokeAPI
-    let response = await axios.get("http://pokeapi.co/api/v2/pokemon")
+    let response = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=40&limit=40")
 
     // Save results from API on PokemonApi
     let pokemonApi = response.data.results
@@ -36,7 +36,7 @@ router.get('/', async function (req, res, next) {
             const [pokemonApi, pokemonDb] = response
 
             allPokemonApi = []
-            setLimit = 12
+            setLimit = 40
 
             for (let i = 0; i < setLimit; i++) {
                 const urlRequest = await axios.get(pokemonApi[i].url)
@@ -88,7 +88,8 @@ router.get('/name/:name', async (req, res, next) => {
                 weight: apiResponse.data.weight,
                 height: apiResponse.data.height,
                 types: types,
-                img: apiResponse.data.sprites.front_default
+                img: apiResponse.data.sprites.front_default,
+                id: apiResponse.data.id
             }
     } catch(error) {
         console.log(error)

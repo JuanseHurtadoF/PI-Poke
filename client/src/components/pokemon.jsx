@@ -13,9 +13,6 @@ export default function Pokemon(props) {
 
     async function handleClick(event) {
         event.preventDefault()
-        console.log('props')
-        console.log(props)
-        console.log('End of props')
 
         await axios.get('http://localhost:3001/api/pokemon/name/' + props.name.toLowerCase())
             .then(response => {

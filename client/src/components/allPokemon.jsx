@@ -6,14 +6,17 @@ import PokemonInfo from "./pokemonInfo"
 
 export default function AllPokemon() {
 
-    let pokemon = useSelector(state => state.filteredPokemon)
+    let pokemon = useSelector(state => state.currentPage)
+    // let filteredPokemon = useSelector(state => state.filteredPokemon)
+    // let currentPage = useSelector(state => state.currentPage)
+
+
 
     
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchPokemon())
     }, [])
-    console.log(pokemon)
     
     return (
         <div className="body-container">

@@ -9,8 +9,6 @@ export default function Order() {
 
     function handleChange(event) {
         let orderBy = event.target.value
-        console.log(toOrder)
-        console.log(orderBy)
         dispatch(orderPokemon(toOrder, orderBy))
     }
     

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 export default function PokemonInfo(props) {
 
     let pokemonInfo = useSelector(state => state.pokemonInfo)
-    console.log(pokemonInfo)
 
     var types = pokemonInfo.types.map(type => {return (<span key={type}>{(type.toUpperCase() + ' ')}</span>)})
 
@@ -28,6 +27,7 @@ export default function PokemonInfo(props) {
                     <li className="stats-list-item">Height: {pokemonInfo.height}</li>
                     <li className="stats-list-item">HP: {pokemonInfo.hp}</li>
                     <li className="stats-list-item">{types}</li>
+                    <li className="stats-list-item">ID: {pokemonInfo.id}</li>
                 </ul>
             </div>
         </div>
