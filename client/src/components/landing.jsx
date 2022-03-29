@@ -1,7 +1,11 @@
 import logo from '../img/pokemon-logo.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Landing() {
+
+    axios.get('http://localhost:3001/api/type/types')
+
     return (
     <div className='landing'>
     <header className='header-landing'>

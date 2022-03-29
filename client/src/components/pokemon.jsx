@@ -1,20 +1,20 @@
 import { useDispatch} from "react-redux"
 import axios from "axios"
 import { pokemonDetails } from "../store/actions"
+import { Link } from "react-router-dom";
 
 var pokemonInfo
 
 export default function Pokemon(props) {
     let key = 1
-    var types = props.types.map(type => {return (<span key = {key++}>{(type[0].toUpperCase() + type.slice(1)) + ' '}</span>)})
+    var types = props.types.map(type => {return (<span key = {key++}>{(type.name[0].toUpperCase() + type.name.slice(1)) + ' '}</span>)})
     
     let dispatch = useDispatch()
 
 
     async function handleClick(event) {
         event.preventDefault()
-
-        await axios.get('http://localhost:3001/api/pokemon/name/' + props.name.toLowerCase())
+        await axios.get('http://localhost:3001/api/pokemon/' + props.id)
             .then(response => {
                 pokemonInfo = response.data
                 dispatch(pokemonDetails(pokemonInfo[0]))

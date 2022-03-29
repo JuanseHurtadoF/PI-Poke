@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux"
 
-export default function PokemonInfo(props) {
+export default function PokemonInfo() {
 
     let pokemonInfo = useSelector(state => state.pokemonInfo)
 
-    var types = pokemonInfo.types.map(type => {return (<span key={type}>{(type.toUpperCase() + ' ')}</span>)})
+    var types = pokemonInfo.types.map(type => {return (<span key={type.name}>{(type.name + ' ')}</span>)})
 
     // let dispatch = useDispatch()
     // useEffect(() => {
@@ -26,7 +26,7 @@ export default function PokemonInfo(props) {
                     <li className="stats-list-item">Defense: {pokemonInfo.defense}</li>
                     <li className="stats-list-item">Height: {pokemonInfo.height}</li>
                     <li className="stats-list-item">HP: {pokemonInfo.hp}</li>
-                    <li className="stats-list-item">{types}</li>
+                    <li className="stats-list-item stats-list-item-types">{types}</li>
                     <li className="stats-list-item">ID: {pokemonInfo.id}</li>
                 </ul>
             </div>

@@ -2,8 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const {Type} = require('../db')
 const {Pokemon} = require('../db')
-
-
+const axios = require('axios');
 
 
 
@@ -14,6 +13,22 @@ router.get('/', async function (req, res, next) {
     } catch(error) {
         next(error)
     }
+})
+
+router.get('/types', async function (req, res, next) {
+    const getTypes = await axios.get('https://pokeapi.co/api/v2/type')
+
+    const types = getTypes.data.results
+
+    const typesArray = types.map(type => type.name)
+
+        for (let i = 0; i< typesArray.length; i++) {
+            Type.create({name: typesArray[i]})
+        }
+    
+    
+
+    res.send(typesArray)
 })
 
 router.post('/', async function (req, res, next) {

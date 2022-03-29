@@ -15,7 +15,7 @@ const initialState = {
         img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
         name: "charmander",
         speed: 65,
-        types: ['fire']
+        types: [{name: 'fire'}]
     }
 }
 
