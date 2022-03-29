@@ -173,7 +173,7 @@ select {
   align-items: center;
   justify-content: center;
   border-radius: 16px 16px 0 0;
-
+  max-width: 270px;
 }
 
 .pokemon-image-info {
@@ -533,9 +533,18 @@ label {
   color: #000;
 }
 
+.separate {
+  color: #e67e22;
+}
 
+.separate:visited, .separate:link {
+  color: #e67e22;
+}
 
-
+.back-black {
+  color: black;
+  margin-top: 80px;
+}
 
 
 

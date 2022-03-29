@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -16,8 +15,6 @@ export default function Form() {
         types: []
     })
 
-
-    let [button, setButton] = useState('Submit')
 
     let [message, setMessage] = useState('')
 
@@ -58,9 +55,9 @@ export default function Form() {
     }
 
     async function handleSubmit(event) {
-        if (!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) {
+        if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2) {
             event.preventDefault()
-            setMessage('Did you leave a mandatory field empty?')
+            setMessage('Did you leave a mandatory field empty or select more than two types?')
         } else {
             // Creating Pokemon
             event.preventDefault()
@@ -239,7 +236,7 @@ export default function Form() {
                     </div>
 
 
-                    <button className='submit'>{button}</button>
+                    <button className='submit'>Submit</button>
                     <p className="message">{message}</p>
                 </form>
             </div>

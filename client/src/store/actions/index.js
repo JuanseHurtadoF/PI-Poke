@@ -78,6 +78,18 @@ export function orderPokemon(toOrder, orderBy) {
         )
     }
 
+    // Order by type
+    if (orderBy === 'Only Poison') {
+        
+        
+        let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'poison')
+        let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'poison')
+
+        orderedPokemon = [...firstType, ...secondType]
+        
+        
+    }
+
     // Order alphabetically Z to A
     if (orderBy === 'Z to A') {
         orderedPokemon = [...toOrder]

@@ -6,6 +6,7 @@ import Pokedex from "./components/pokedex";
 import Landing from "./components/landing";
 import Form from "./components/form";
 import PokemonInfo from "./components/pokemonInfo";
+import SeparatePokemon from "./components/separatePokemon";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route exact path='/' element={<Landing />} />
         <Route path='/pokedex' element={<Pokedex />} />
         <Route path='/pokedex/form' element={<Form />} />
-        <Route path='/pokedex/details' element={<PokemonInfo />} />
+        <Route path='/pokedex/details' element={<SeparatePokemon />} />
       </Routes>
     </div>
   );

@@ -1,7 +1,6 @@
 import { useDispatch} from "react-redux"
 import axios from "axios"
 import { pokemonDetails } from "../store/actions"
-import { Link } from "react-router-dom";
 
 var pokemonInfo
 

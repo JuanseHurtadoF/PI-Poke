@@ -2,12 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 
-export default function PokemonInfo() {
+export default function SeparatePokemon() {
 
     let pokemonInfo = useSelector(state => state.pokemonInfo)
 
     var types = pokemonInfo.types.map(type => {return (<span key={type.name}>{(type.name + ' ')}</span>)})
 
+    // let dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(pokemonDetails(props.name))
+    // }, [])
 
     
     return (
@@ -27,7 +31,7 @@ export default function PokemonInfo() {
                     <li className="stats-list-item">ID: {pokemonInfo.id}</li>
                 </ul>
             </div>
-            <Link to="/pokedex/details" className="separate">View on separate page</Link>
+            <Link to='/pokedex' className="back-black">Go Back</Link>
         </div>
 
 

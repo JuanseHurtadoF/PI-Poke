@@ -20,6 +20,7 @@ export default function Order() {
             <option value='By attack'>By attack</option>
             <option value='Created by me'>Created by me</option>
             <option value='From PokeApi'>From PokeApi</option>
+            <option value='Only Poison'>Only Poison</option>
         </select>
     )
 }

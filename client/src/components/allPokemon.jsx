@@ -20,6 +20,7 @@ export default function AllPokemon() {
 
     
     let dispatch = useDispatch()
+    
     useEffect(() => {
         dispatch(fetchPokemon())
     }, [])

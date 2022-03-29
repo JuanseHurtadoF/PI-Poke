@@ -7,15 +7,14 @@ const initialState = {
     filteredPokemon: [],
     currentPage: [], // Will only have 12 pokemon from filteredPokemon
     pokemonInfo: {
-        name: 'Charmander',
-        attack: 52,
-        defense: 43,
-        height: 6,
-        hp: 39,
-        img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-        name: "charmander",
+        attack: 45,
+        defense: 35,
+        height: 8,
+        hp: 40,
+        img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
+        name: "zubat",
         speed: 65,
-        types: [{name: 'fire'}]
+        types: [{name: 'poison'}, {name: 'flying'}]
     }
 }
 
