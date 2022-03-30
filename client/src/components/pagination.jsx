@@ -37,10 +37,12 @@ export default function Pagination() {
 
     let dispatch = useDispatch()
 
+
+
     function handleClick(event) {
         event.preventDefault()
         setCurrentValue(event.target.value)
-        dispatch(changePage(currentValue, filteredPokemon))
+        dispatch(changePage(event.target.value, filteredPokemon))
     }
 
     function handleLeftClick(event) {
@@ -54,6 +56,7 @@ export default function Pagination() {
         setCurrentValue(currentValue + 1)
         dispatch(changePage(currentValue + 1, filteredPokemon))
     }
+
 
 
 

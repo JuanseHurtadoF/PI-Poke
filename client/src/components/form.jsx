@@ -55,7 +55,7 @@ export default function Form() {
     }
 
     async function handleSubmit(event) {
-        if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2) {
+        if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2 ) {
             event.preventDefault()
             setMessage('Did you leave a mandatory field empty or select more than two types?')
         } else {
@@ -80,7 +80,7 @@ export default function Form() {
             for (let i = 0; i < types.data.length; i++) {
                 var currentType = types.data.filter(type => type.name === form.types[i])
                 console.log(currentType[0])
-                let typeId = currentType[0]?.id  ? currentType[0].id : unknownType[0].id
+                let typeId = currentType[0]?.id
                 console.log(typeId)
 
                 const assignType = await axios.post(`http://localhost:3001/api/type/${newPokemon.data.id}/type/${typeId}`)
