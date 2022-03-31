@@ -4,17 +4,6 @@ const {Type} = require('../db')
 const {Pokemon} = require('../db')
 const axios = require('axios');
 
-
-
-router.get('/', async function (req, res, next) {
-    try {
-        const types = await Type.findAll()
-        return res.send(types)
-    } catch(error) {
-        next(error)
-    }
-})
-
 router.get('/types', async function (req, res, next) {
     const getTypes = await axios.get('https://pokeapi.co/api/v2/type')
 
@@ -26,9 +15,16 @@ router.get('/types', async function (req, res, next) {
             Type.create({name: typesArray[i]})
         }
     
-    
-
     res.send(typesArray)
+})
+
+router.get('/', async function (req, res, next) {
+    try {
+        const types = await Type.findAll()
+        return res.send(types)
+    } catch(error) {
+        next(error)
+    }
 })
 
 router.post('/', async function (req, res, next) {
@@ -49,15 +45,6 @@ router.post('/:pokemonId/type/:typeId', async (req, res, next) => {
     } catch(error) {
         next(error)
     }
-
 })
-
-// router.put('/', function (req, res, next) {
-//     res.send("Soy put en / type")
-// })
-
-// router.delete('/', function (req, res, next) {
-//     res.send("Soy delete en / type")
-// })
 
 module.exports = router;

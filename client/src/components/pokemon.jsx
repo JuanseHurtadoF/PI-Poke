@@ -6,10 +6,9 @@ var pokemonInfo
 
 export default function Pokemon(props) {
     let key = 1
-    var types = props.types.map(type => {return (<span key = {key++}>{(type.name[0].toUpperCase() + type.name.slice(1)) + ' '}</span>)})
+    var types = props.types?.map(type => {return (<span key = {key++}>{(type.name[0].toUpperCase() + type.name.slice(1)) + ' '}</span>)})
     
     let dispatch = useDispatch()
-
 
     async function handleClick(event) {
         event.preventDefault()
@@ -23,7 +22,7 @@ export default function Pokemon(props) {
     return (
         <div className="pokemon-card" draggable='true' onClick={handleClick}>
             <div className="image-background">
-                <img src={props.image} className="pokemon-image" alt="pokemon front-default"></img>
+                <img src={props.img} className="pokemon-image hide-image"></img>
             </div>
             <div className="pokemon-name-type">
                 <h2 className="pokemon-name">{props.name}</h2>
@@ -36,5 +35,6 @@ export default function Pokemon(props) {
         </div>
     )
 }
+
 
 

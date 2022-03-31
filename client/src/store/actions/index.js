@@ -4,6 +4,7 @@ export const GET_POKEMON_INFO = 'GET_POKEMON INFO'
 export const SEARCH_POKEMON = 'SEARCH_POKEMON'
 export const ORDER_POKEMON = 'ORDER_POKEMON'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
+export const RESET_POKEMON ='RESET_POKEMON'
 
 
 
@@ -20,6 +21,16 @@ export function fetchPokemon() {
                 console.log(error)
             })
     }
+    
+}
+
+export function resetPokemon() {
+    return function(dispatch) {
+        dispatch({
+            type: RESET_POKEMON,
+            payload: ''
+        })
+}
 }
 
 export function pokemonDetails(info) {
@@ -79,102 +90,102 @@ export function orderPokemon(toOrder, orderBy) {
     }
 
     // Order by type
-    if (orderBy === 'Only Poison') {   
+    if (orderBy === 'Poison') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'poison')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'poison')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Normal') {   
+    if (orderBy === 'Normal') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'normal')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'normal')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Rock') {   
+    if (orderBy === 'Rock') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'rock')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'rock')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Fire') {   
+    if (orderBy === 'Fire') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'fire')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'fire')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Psychic') {   
+    if (orderBy === 'Psychic') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'psychic')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'psychic')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Dark') {   
+    if (orderBy === 'Dark') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'dark')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'dark')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Fighting') {   
+    if (orderBy === 'Fighting') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'fighting')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'fighting')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Bug') {   
+    if (orderBy === 'Bug') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'bug')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'bug')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Water') {   
+    if (orderBy === 'Water') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'water')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'water')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Ice') {   
+    if (orderBy === 'Ice') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'ice')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'ice')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Fairy') {   
+    if (orderBy === 'Fairy') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'fairy')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'fairy')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Flying') {   
+    if (orderBy === 'Flying') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'flying')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'flying')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Ghost') {   
+    if (orderBy === 'Ghost') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'ghost')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'ghost')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Grass') {   
+    if (orderBy === 'Grass') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'grass')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'grass')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Dragon') {   
+    if (orderBy === 'Dragon') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'dragon')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'dragon')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Unknown') {   
+    if (orderBy === 'Unknown') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'unknown')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'unknown')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Steel') {   
+    if (orderBy === 'Steel') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'steel')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'steel')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Electric') {   
+    if (orderBy === 'Electric') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'electric')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'electric')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Ground') {   
+    if (orderBy === 'Ground') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'ground')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'ground')
         orderedPokemon = [...firstType, ...secondType]
     }
-    if (orderBy === 'Only Shadow') {   
+    if (orderBy === 'Shadow') {   
         let firstType = toOrder.filter(pokemon => pokemon.types[0].name === 'shadow')
         let secondType = toOrder.filter(pokemon => pokemon.types[1]?.name === 'shadow')
         orderedPokemon = [...firstType, ...secondType]

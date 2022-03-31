@@ -6,31 +6,30 @@ export default function PokemonInfo() {
 
     let pokemonInfo = useSelector(state => state.pokemonInfo)
 
-    var types = pokemonInfo.types.map(type => {return (<span key={type.name}>{(type.name + ' ')}</span>)})
-
-
+    var types = pokemonInfo.types?.map(type => {return (<span key={type.name}>{(type.name + ' ')}</span>)})
     
     return (
         <div className="pokemon-information" key={pokemonInfo.id}>
             <div className="pokemon-information-background">
-                <img src={pokemonInfo.img} className="pokemon-image-info" alt="Pokemon front"/>
+                <img src={pokemonInfo.img} className="pokemon-image-info hide-image"/>
             </div>
             
             <h1 className="pokemon-name">{pokemonInfo.name[0].toUpperCase() + pokemonInfo.name.slice(1)}</h1>
             <div className="stats-list-container">
                 <ul className="stats-list">
-                    <li className="stats-list-item">Attack: {pokemonInfo.attack}</li>
-                    <li className="stats-list-item">Defense: {pokemonInfo.defense}</li>
-                    <li className="stats-list-item">Height: {pokemonInfo.height}</li>
-                    <li className="stats-list-item">HP: {pokemonInfo.hp}</li>
-                    <li className="stats-list-item stats-list-item-types">{types}</li>
-                    <li className="stats-list-item">ID: {pokemonInfo.id}</li>
+                    {!pokemonInfo.attack && <li className="stats-list-item gray">Choose a Pokemon to view details</li>}
+                    {pokemonInfo.attack && <li className="stats-list-item">Attack: {pokemonInfo.attack}</li>}
+                    {pokemonInfo.defense && <li className="stats-list-item">Defense: {pokemonInfo.defense}</li>}
+                    {pokemonInfo.height && <li className="stats-list-item">Height: {pokemonInfo.height}</li>}
+                    {pokemonInfo.hp && <li className="stats-list-item">HP: {pokemonInfo.hp}</li>}
+                    {pokemonInfo.hp && <li className="stats-list-item stats-list-item-types">{types}</li>}
+                    {pokemonInfo.id && <li className="stats-list-item">ID: {pokemonInfo.id}</li>}
                 </ul>
             </div>
-            <Link to="/pokedex/details" className="separate">View on separate page</Link>
+            {pokemonInfo.id && <div className="separate-page-div"><Link to={`/pokedex/${pokemonInfo.id}`} className="separate">View on separate page</Link></div>}
+            
         </div>
-
-
-    )
-
+    ) 
 }
+
+

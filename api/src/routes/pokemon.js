@@ -1,23 +1,21 @@
 const axios = require('axios');
-const { Router, response } = require('express');
+const { Router } = require('express');
 const { Pokemon } = require('../db')
 const { Type } = require('../db')
 const router = Router();
+// const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 router.get('/', async function (req, res, next) {
 
     // Get pokemon from PokeAPI
     let response = await axios.get("https://pokeapi.co/api/v2/pokemon?offset=40&limit=40")
-
     // Save results from API on PokemonApi
     let pokemonApi = response.data.results
 
-    // Get pokemon that have been stored in the DB
-    // let pokemonDb = Pokemon.findAll({
-    //     include: Type,
-    // })
 
+    // Get pokemon that have been stored in the DB
     let pokemonDb = Pokemon.findAll({
+        // Complex types object to types: [{name: 'fire'}, {name: 'poison'}]
         include: [{
             model: Type,
             as: 'types',
@@ -39,13 +37,14 @@ router.get('/', async function (req, res, next) {
             setLimit = 40
 
             for (let i = 0; i < setLimit; i++) {
-                const urlRequest = await axios.get(pokemonApi[i].url)
 
+                const urlRequest = await axios.get(pokemonApi[i].url)
                 types = urlRequest.data.types.map(poke => {return {name: poke.type.name}})
+
                 var obj = {
                         id: urlRequest.data.id,
                         name: urlRequest.data.name,
-                        // HP: urlRequest.data.stats[0].base_stat,
+                        // hp: urlRequest.data.stats[0].base_stat,
                         attack: urlRequest.data.stats[1].base_stat,
                         // defense: urlRequest.data.stats[2].base_stat,
                         // speed: urlRequest.data.stats[5].base_stat,
@@ -58,7 +57,7 @@ router.get('/', async function (req, res, next) {
                 allPokemonApi.push(obj)
             }
 
-            const fromApiAndDb = [ ...pokemonDb,...allPokemonApi]
+            const fromApiAndDb = [...pokemonDb,...allPokemonApi]
 
             return res.send(fromApiAndDb)
         })
@@ -106,7 +105,6 @@ router.get('/name/:name', async (req, res, next) => {
     if (allFound.length < 1) return res.send('No pokemon found')
 
     res.send(filteredAllFound)
-
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -160,7 +158,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async function (req, res, next) {
     try {
-        const {name, hp, attack, defense, speed, height, weight } = req.body
+        const {name, hp, attack, defense, speed, height, weight, img} = req.body
         const newPokemon = await Pokemon.create({
             name: name.toLowerCase(), 
             hp,
@@ -169,26 +167,13 @@ router.post('/', async function (req, res, next) {
             speed,
             height,
             weight,
+            img
         })
         return res.send(newPokemon)
     } catch(error) {
         next(error)
     }
-    
-
 })
-
-
-router.put('/', function (req, res, next) {
-    return res.send("Soy put en / pokemon")
-})
-
-router.delete('/', function (req, res, next) {
-    return res.send("Soy delete en / pokemon")
-})
-
-
-
 
 
 module.exports = router;

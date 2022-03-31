@@ -137,6 +137,7 @@ code {
   background-size: cover;
   border-radius: 12px 12px 0 0;
   margin-bottom: 12px;
+  min-height: 124px;
 }
 
 .pokemon-container {
@@ -168,14 +169,40 @@ code {
 /* POKEMON INFO STYLES */
 
 .pokemon-info {
-  border: 1px solid green;
   margin: 12px;
   margin-top: 0;
-  height: 500px;
-  border-radius: 16px;
+  height: 550px;
+  border-radius: 20px;
   width: 270px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12); 
+}
+
+.pokemon-information-separate {
+  margin: 12px;
+  margin-top: 0;
+  height: 550px;
+  border-radius: 20px;
+  width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12); 
+}
+
+
+
+.pokemon-information-background-separate {
+  background-image: linear-gradient(to right, rgb(34, 34, 34, 0.6), rgba(34, 34, 34, 0.6)), url('./img/pokemon-background.png');
+  background-size: cover;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px 16px 0 0;
+  max-width: 270px;
 }
 
 .pokemon-information-background {
@@ -209,6 +236,10 @@ code {
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
+}
+
+.separate-page-div {
+  margin-top: 50px;
 }
 
 
@@ -345,7 +376,7 @@ button {
 
 .btn:link,
 .btn:visited {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   font-family: sans-serif;
   background-color: #e67e22;
@@ -386,7 +417,10 @@ button {
 /* FORM STYLES */
 
 .btn-create {
-  margin-top: 60px;
+  position: absolute;
+  bottom: -100px;
+  width: 150px;
+  transform: translate(-50%, 0);
 }
 
 .form-background {
@@ -558,6 +592,27 @@ label {
   color: black;
   margin-top: 80px;
 }
+
+  .hide-image {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.back-orange-div {
+  margin-top: 20px;
+}
+
+.back-orange:link, .back-orange:visited {
+  color: #e67e22;
+}
+
+.gray {
+  color: #868e96;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 
 
 

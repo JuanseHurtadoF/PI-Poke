@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { searchPokemon } from "../store/actions"
 import { useDispatch } from "react-redux"
-import { fetchPokemon } from "../store/actions"
+import { resetPokemon } from "../store/actions"
 
 export default function SearchBar (props) {
     let [search, setSearch] = useState(' ')
@@ -12,7 +12,6 @@ export default function SearchBar (props) {
         event.preventDefault()
         // axios.get(search)
         dispatch(searchPokemon(search.toLowerCase()))
-        
     }
 
     function handleChange(event) {
@@ -20,7 +19,7 @@ export default function SearchBar (props) {
         setSearch(event.target.value)
 
         if(event.target.value === '') {
-            dispatch(fetchPokemon())
+            dispatch(resetPokemon())
         }
     }
 

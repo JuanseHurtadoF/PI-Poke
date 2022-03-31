@@ -11,14 +11,11 @@ export default function Form() {
         speed: '',
         height: '',
         weight: '',
-        image: '',
         types: []
     })
 
 
     let [message, setMessage] = useState('')
-
-
 
     // async function createTypeSelect() {
     //     let allTypes = await getTypes()
@@ -53,6 +50,7 @@ export default function Form() {
                 
         }
     }
+    console.log(form.types)
 
     async function handleSubmit(event) {
         if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2 ) {
@@ -68,7 +66,6 @@ export default function Form() {
             const types = await axios.get('http://localhost:3001/api/type')
 
             let unknownType = types.data.filter(type => type.name === 'unknown')
-            console.log(unknownType)
 
             if (types.length <= 0) {
                 setForm({
@@ -77,9 +74,8 @@ export default function Form() {
                 })
             }
 
-            for (let i = 0; i < types.data.length; i++) {
+            for (let i = 0; i < 2; i++) {
                 var currentType = types.data.filter(type => type.name === form.types[i])
-                console.log(currentType[0])
                 let typeId = currentType[0]?.id
                 console.log(typeId)
 
@@ -125,7 +121,7 @@ export default function Form() {
                         <input value={form.weight} name='weight' type='number' placeholder="Weight" className="form-input-stat" onChange={handleChange}></input>
 
                         <label className="form-label">Image: </label>
-                        <input value={form.image} name='image' type='text' placeholder="Image" className="form-input-stat" onChange={handleChange}></input>
+                        <input value={form.img} name='img' type='text' placeholder="Image" className="form-input-stat" onChange={handleChange}></input>
         
                     </div>
                     
