@@ -17,13 +17,6 @@ export default function Form() {
 
     let [message, setMessage] = useState('')
 
-    // async function createTypeSelect() {
-    //     let allTypes = await getTypes()
-    //     typesSelect = allTypes.map(type => {
-    //         return(<option value={type.name}>Juanse</option>)
-    //     })
-    // }
-    // createTypeSelect()
 
     function handleChange(event) {
         event.preventDefault()
@@ -33,13 +26,13 @@ export default function Form() {
         })
     }
 
-    let typesArray = []
+    // let typesArray = []
     async function handleCheckChange(event) {
         if (event.target.checked) {
-            typesArray.push(event.target.value)
+            // typesArray.push(event.target.value)
             setForm({
                 ...form,
-                types: [...form.types, ...typesArray]
+                types: [...form.types, event.target.value]
             }) 
         } else {
             // let filteredTypes = [typesArray]
@@ -53,9 +46,11 @@ export default function Form() {
     console.log(form.types)
 
     async function handleSubmit(event) {
-        if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2 ) {
+        if ((!form.name || !form.hp || !form.attack || !form.speed || !form.height || !form.weight) || form.types.length > 2  || form.types.length < 1) {
             event.preventDefault()
             setMessage('Did you leave a mandatory field empty or select more than two types?')
+        } else if (false) {
+            console.log('here')
         } else {
             // Creating Pokemon
             event.preventDefault()
@@ -67,7 +62,7 @@ export default function Form() {
 
             let unknownType = types.data.filter(type => type.name === 'unknown')
 
-            if (types.length <= 0) {
+            if (form.types.length <= 0) {
                 setForm({
                     ...form,
                     types: [unknownType]
