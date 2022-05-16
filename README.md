@@ -13,8 +13,9 @@ DB_USER=yourPostgresUsername
 DB_PASSWORD=yourPostgresPassword
 DB_HOST=localhost
 ```
-Then, type `npm install` on the terminal while located on both `api` and `client` folders to install all dependencies.
+Then, run the `npm install` command in the terminal while located on both `api` and `client` folders.
 
-Finally, type `npm start` on both folders. To avoid bugs, make sure to deploy the API first. 
+Finally, run `npm start` on both folders. To avoid bugs, make sure to deploy the API first. 
 
+Sorry for all the extra steps. Published version coming soon!
 
