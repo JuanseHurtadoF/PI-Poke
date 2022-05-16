@@ -12,7 +12,7 @@ export default function Pokemon(props) {
 
     async function handleClick(event) {
         event.preventDefault()
-        await axios.get('http://localhost:3001/api/pokemon/' + props.id)
+        await axios.get('http://localhost:3002/api/pokemon/' + props.id)
             .then(response => {
                 pokemonInfo = response.data
                 dispatch(pokemonDetails(pokemonInfo[0]))

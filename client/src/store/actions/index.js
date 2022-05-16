@@ -11,7 +11,7 @@ export const ATTACK_ORDER = 'ATTACK_ORDER'
 
 export function fetchPokemon() {
     return function(dispatch) {
-        axios.get('http://localhost:3001/api/pokemon')
+        axios.get('http://localhost:3002/api/pokemon')
             .then(pokemon => {
                 dispatch({
                     type: FETCH_POKEMON,
@@ -45,7 +45,7 @@ export function pokemonDetails(info) {
 
 export function searchPokemon(search) {
     return function(dispatch) {
-        axios.get('http://localhost:3001/api/pokemon/name/' + search)
+        axios.get('http://localhost:3002/api/pokemon/name/' + search)
             .then(pokemon => {
                 dispatch({
                     type: SEARCH_POKEMON,

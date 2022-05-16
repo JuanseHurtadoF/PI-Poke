@@ -55,10 +55,10 @@ export default function Form() {
             // Creating Pokemon
             event.preventDefault()
             setMessage('Created successfully')
-            const newPokemon = await axios.post("http://localhost:3001/api/pokemon", form)
+            const newPokemon = await axios.post("http://localhost:3002/api/pokemon", form)
 
             // Associating Pokemon with types
-            const types = await axios.get('http://localhost:3001/api/type')
+            const types = await axios.get('http://localhost:3002/api/type')
 
             let unknownType = types.data.filter(type => type.name === 'unknown')
 
@@ -74,7 +74,7 @@ export default function Form() {
                 let typeId = currentType[0]?.id
                 console.log(typeId)
 
-                const assignType = await axios.post(`http://localhost:3001/api/type/${newPokemon.data.id}/type/${typeId}`)
+                const assignType = await axios.post(`http://localhost:3002/api/type/${newPokemon.data.id}/type/${typeId}`)
             }
             
         }

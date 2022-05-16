@@ -15,7 +15,7 @@ export default function SeparatePokemon() {
     let dispatch = useDispatch()
 
     async function details(id) {
-        await axios.get(`http://localhost:3001/api/pokemon/` + id)
+        await axios.get(`http://localhost:3002/api/pokemon/` + id)
             .then(response => {
                 let pokemonInfo = response.data
                 dispatch(pokemonDetails(pokemonInfo[0]))
