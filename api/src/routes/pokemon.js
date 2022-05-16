@@ -154,7 +154,6 @@ router.get('/:id', async (req, res, next) => {
     } catch(error) {
         next(error)
     }
-
 })
 
 router.post('/', async function (req, res, next) {

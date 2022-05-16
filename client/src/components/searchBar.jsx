@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { searchPokemon } from "../store/actions"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { resetPokemon } from "../store/actions"
+import { attackOrder } from "../store/actions"
 
 export default function SearchBar (props) {
     let [search, setSearch] = useState(' ')
@@ -11,7 +12,10 @@ export default function SearchBar (props) {
     function handleSubmit(event) {
         event.preventDefault()
         // axios.get(search)
-        dispatch(searchPokemon(search.toLowerCase()))
+        // dispatch(searchPokemon(search.toLowerCase()))
+
+
+        dispatch(searchPokemon(search))
     }
 
     function handleChange(event) {

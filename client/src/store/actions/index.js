@@ -5,6 +5,7 @@ export const SEARCH_POKEMON = 'SEARCH_POKEMON'
 export const ORDER_POKEMON = 'ORDER_POKEMON'
 export const CHANGE_PAGE = 'CHANGE_PAGE'
 export const RESET_POKEMON ='RESET_POKEMON'
+export const ATTACK_ORDER = 'ATTACK_ORDER'
 
 
 
@@ -58,7 +59,6 @@ export function searchPokemon(search) {
 }
 
 export function changePage(page, filteredPokemon) {
-    console.log('got here')
     return function(dispatch) {
     dispatch({
         type: CHANGE_PAGE, 
@@ -69,6 +69,15 @@ export function changePage(page, filteredPokemon) {
     })
     }
 }
+
+// export function attackOrder(search) {
+//     return function(dispatch) {
+//         dispatch({
+//             type: ATTACK_ORDER, 
+//             payload: search
+//         })
+//         }
+// }
 
 export function orderPokemon(toOrder, orderBy) { 
     let orderedPokemon = toOrder

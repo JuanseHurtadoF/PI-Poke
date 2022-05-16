@@ -16,27 +16,13 @@ export default function Pagination() {
     console.log(filteredPokemon.length)
 
     
-    var numberOfPages = []
+    var numberOfPages = [] 
 
     for (let i = 1; i <= pages; i++) {
         numberOfPages.push(i)
     }
 
-    // async function handleClick(event) {
-    //     event.preventDefault()
-
-    //     await axios.get('http://localhost:3001/api/pokemon/name/' + props.name.toLowerCase())
-    //         .then(response => {
-    //             pokemonInfo = response.data
-    //             dispatch(pokemonDetails(pokemonInfo[0]))
-    //         })
-    // }
-
-
-
     let dispatch = useDispatch()
-
-
 
     function handleClick(event) {
         event.preventDefault()
@@ -55,9 +41,6 @@ export default function Pagination() {
         setCurrentValue(currentValue + 1)
         dispatch(changePage(currentValue + 1, filteredPokemon))
     }
-
-
-
 
 
     let value = 0

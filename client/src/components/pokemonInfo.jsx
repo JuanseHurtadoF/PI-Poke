@@ -23,7 +23,7 @@ export default function PokemonInfo() {
                     {pokemonInfo.height && <li className="stats-list-item">Height: {pokemonInfo.height}</li>}
                     {pokemonInfo.hp && <li className="stats-list-item">HP: {pokemonInfo.hp}</li>}
                     {pokemonInfo.hp && <li className="stats-list-item stats-list-item-types">{types}</li>}
-                    {pokemonInfo.id && <li className="stats-list-item">ID: {pokemonInfo.id}</li>}
+                    {pokemonInfo.id && <li className="stats-list-item">ID: {typeof pokemonInfo.id === 'string' ? pokemonInfo.id.slice(0, 3) : pokemonInfo.id }</li>}
                 </ul>
             </div>
             {pokemonInfo.id && <div className="separate-page-div"><Link to={`/pokedex/${pokemonInfo.id}`} className="separate">View on separate page</Link></div>}

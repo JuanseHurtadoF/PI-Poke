@@ -1,6 +1,7 @@
 import { CHANGE_PAGE, FETCH_POKEMON, RESET_POKEMON, SEARCH_POKEMON } from "../actions";
 import { GET_POKEMON_INFO } from "../actions";
 import { ORDER_POKEMON } from "../actions";
+import { ATTACK_ORDER } from "../actions";
 
 const initialState = {
     pokemon: [],
@@ -16,7 +17,6 @@ const initialState = {
         speed: '',
         types: [{name: 'loading'}]
     },
-    prevPokemon: []
 }
 
 export default function reducer(state = initialState, action) {
@@ -45,6 +45,25 @@ export default function reducer(state = initialState, action) {
                 filteredPokemon: action.payload,
                 currentPage: action.payload.slice(0, 12),
             }
+        // case ATTACK_ORDER: 
+        //     let orderedPokemon = state.filteredPokemon.sort( (a, b) => {
+        //     if ( a.attack < b.attack ){
+        //         return -1;
+        //       }
+        //       if ( a.attack > b.attack ){
+        //         return 1;
+        //       }
+        //       return 0;
+        //     }
+        // )
+        
+        // let attackOrder = orderedPokemon.filter(pokemon => pokemon.attack > 50)
+
+        //     return {
+        //         ...state, 
+        //         filteredPokemon: attackOrder,
+        //         currentPage: attackOrder.slice(0, 12),
+        //     }
         case CHANGE_PAGE:
             return {
                 ...state,
