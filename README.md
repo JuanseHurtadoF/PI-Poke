@@ -6,7 +6,7 @@
 
 As my final project on SoyHenry, a full stack developer bootcamp, I was tasked to develop a fully functioning Pokedex from scratch. I used Express JS to create a REST API, and Sequelize for data management. The user interface is built with React, Redux, and CSS.
 
-To run, create a .env file in the `api` folder with the following content
+To run, create a .env file in the `api` folder with the following content:
 
 ```
 DB_USER=yourPostgresUsername
